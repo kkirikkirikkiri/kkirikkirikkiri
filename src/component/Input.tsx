@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import ICON_SEARCH from "../assets/img/icon/search.svg";
+import media from "../constants/media";
 const SSearchInput = styled.div`
   width: 100%;
   margin: 60px 0;
   position: relative;
   input {
     background: #fafafa;
-    filter: drop-shadow(0px 0px 9px rgba(34, 34, 34, 0.34));
+    filter: drop-shadow(rgba(22, 22, 22, 0.16) 0px 0px 9px);
     border-radius: 10px;
     border: 0;
     width: 100%;
@@ -31,6 +32,9 @@ const SSearchInput = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: 24px;
+  }
+  ${media.MOBILE} {
+    margin: 30px 0;
   }
 `;
 const Input = () => {

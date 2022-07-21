@@ -1,11 +1,17 @@
 import styled from "styled-components";
 import Header from "../component/Header";
 import IMG_MAINLOGO from "../assets/img/logo-main.png";
-import BANNER_1 from "../assets/img/banner/banner-1.png";
+import BANNER_1 from "../assets/img/banner/banner_w_1.jpg";
+import BANNER_2 from "../assets/img/banner/banner_w_2.jpg";
+import BANNER_3 from "../assets/img/banner/banner_w_3.jpg";
 import Input from "../component/Input";
 import Footer from "../component/Footer";
 import MainCategory from "../component/MainCategory";
 import media from "../constants/media";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 const SMainContainer = styled.div`
   .container {
     width: 1024px;
@@ -24,7 +30,28 @@ const SMainContainer = styled.div`
       }
       .banner {
         width: 100%;
-        display: block;
+        .banner-item {
+          border: 1px solid #e0e0e0;
+          border-radius: 8px;
+          img {
+            border-radius: 8px;
+            width: 100%;
+          }
+        }
+        .slick-dots {
+          bottom: 15px;
+          li {
+            width: 3px;
+            button::before {
+              color: #fff;
+            }
+            &.slick-active {
+              button::before {
+                color: #fff;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -33,13 +60,16 @@ const SMainContainer = styled.div`
       width: 100%;
       .main {
         width: 100%;
-        padding: 50px 0;
+        padding: 50px 30px;
+        box-sizing: border-box;
         .main-logo {
           width: 180px;
           margin: 20px auto;
         }
         .banner {
-          display: none;
+          position: absolute;
+          bottom: 140px;
+          width: 85%;
         }
       }
     }
@@ -47,13 +77,31 @@ const SMainContainer = styled.div`
 `;
 
 export const Main = () => {
+  const settings = {
+    dots: true,
+    infinite: true, // 무한으로 즐기게
+    speed: 500,
+    slidesToScroll: 1, //1장씩 넘어가세요
+    autoplay: true,
+    autoplaySpeed: 2000,
+  };
   return (
     <SMainContainer>
       <Header />
       <div className="container">
         <div className="main">
           <img className="main-logo" src={IMG_MAINLOGO} />
-          <img className="banner" src={BANNER_1} />
+          <Slider {...settings} className="banner">
+            <div className="banner-item">
+              <img src={BANNER_1} />
+            </div>
+            <div className="banner-item">
+              <img src={BANNER_2} />
+            </div>
+            <div className="banner-item">
+              <img src={BANNER_3} />
+            </div>
+          </Slider>
           <Input />
           <MainCategory />
         </div>

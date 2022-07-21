@@ -2,6 +2,8 @@ import ICON_FREEBOARD from "../assets/img/icon/free.png";
 import ICON_MBTITEST from "../assets/img/icon/mbti.png";
 import ICON_COLORTEST from "../assets/img/icon/color.png";
 import styled from "styled-components";
+import media from "../constants/media";
+
 const SMainIcon = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,6 +36,17 @@ const SMainIcon = styled.div`
     &.free-board {
       background-color: #78d1e9;
       background-image: url(${ICON_FREEBOARD});
+    }
+  }
+  ${media.MOBILE} {
+    .item {
+      width: 45px;
+      height: 45px;
+      background-size: 60%;
+      span {
+        bottom: -25px;
+        font-size: 14px;
+      }
     }
   }
 `;

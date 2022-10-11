@@ -1,17 +1,14 @@
 import styled from "styled-components";
-import Header from "../component/Header";
-import IMG_MAINLOGO from "../assets/img/logo-main.png";
 import BANNER_1 from "../assets/img/banner/banner_w_1.jpg";
 import BANNER_2 from "../assets/img/banner/banner_w_2.jpg";
 import BANNER_3 from "../assets/img/banner/banner_w_3.jpg";
+import IMG_MAINLOGO from "../assets/img/logo-main.png";
 import Input from "../component/Input";
-import Footer from "../component/Footer";
 import MainCategory from "../component/MainCategory";
-import media from "../constants/media";
 
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 const SMain = styled.div`
   width: 500px;
   margin: 0 auto;
@@ -63,16 +60,16 @@ export const Main = () => {
   return (
     <div className="container">
       <SMain>
-        <img className="main-logo" src={IMG_MAINLOGO} />
+        <img className="main-logo" src={IMG_MAINLOGO} alt="main" />
         <Slider {...settings} className="banner">
           <div className="banner-item">
-            <img src={BANNER_1} />
+            <img src={BANNER_1} alt="banner1" />
           </div>
           <div className="banner-item">
-            <img src={BANNER_2} />
+            <img src={BANNER_2} alt="banner2" />
           </div>
           <div className="banner-item">
-            <img src={BANNER_3} />
+            <img src={BANNER_3} alt="banner3" />
           </div>
         </Slider>
         <Input />

@@ -6,6 +6,7 @@ import ICON_MENU from "../assets/img/icon/menu.svg";
 import ICON_CLOSE from "../assets/img/icon/close.svg";
 import media from "../constants/media";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 const SHeader = styled.nav`
   background-color: #ff7f42;
   width: 100%;
@@ -168,7 +169,9 @@ const Header = () => {
           </span>
           <div className="m-login">
             <span>로그인하고 끼리끼리를 마음껏 투어하세요!</span>
-            <SM_LoginBtn>로그인</SM_LoginBtn>
+            <Link to="/login">
+              <SM_LoginBtn>로그인</SM_LoginBtn>
+            </Link>
           </div>
           <div className="m-menu">
             <ul className="board">
@@ -187,9 +190,11 @@ const Header = () => {
         <div className={`dimmed ${mobileMenuOpen ? "active" : "none"}`}></div>
         <img className="logo" src={LOGO} />
         <img className="logo-mini" src={LOGOMINI} />
-        <div className="account">
-          <SLoginBtn>로그인</SLoginBtn>
-        </div>
+        <Link to="/login">
+          <div className="account">
+            <SLoginBtn>로그인</SLoginBtn>
+          </div>
+        </Link>
       </div>
     </SHeader>
   );

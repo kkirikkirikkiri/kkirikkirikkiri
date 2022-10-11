@@ -1,12 +1,11 @@
-import styled from "styled-components";
-import { ThemeProvider } from "styled-components";
-import LOGO from "../assets/img/logo.png";
-import LOGOMINI from "../assets/img/logo-mini.svg";
-import ICON_MENU from "../assets/img/icon/menu.svg";
-import ICON_CLOSE from "../assets/img/icon/close.svg";
-import media from "../constants/media";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import ICON_CLOSE from "../assets/img/icon/close.svg";
+import ICON_MENU from "../assets/img/icon/menu.svg";
+import LOGOMINI from "../assets/img/logo-mini.svg";
+import LOGO from "../assets/img/logo.png";
+import media from "../constants/media";
 const SHeader = styled.nav`
   background-color: #ff7f42;
   width: 100%;

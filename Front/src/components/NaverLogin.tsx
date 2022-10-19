@@ -1,12 +1,10 @@
 import { useEffect } from "react";
 
 export const NaverLogin = () => {
-  //@ts-ignore
-  const { naver } = window;
   const NAVER_CLIENT_ID = "T1PLBkBiDziggLWWCwK_";
   const NAVER_CALLBACK_URL = "http://localhost:3000/login";
 
-  const initializeNaverLogin = () => {
+  const initializeNaverLogin = (naver: any) => {
     const naverLogin = new naver.LoginWithNaverId({
       firstChild: "body",
       clientId: NAVER_CLIENT_ID,
@@ -40,7 +38,9 @@ export const NaverLogin = () => {
   };
 
   useEffect(() => {
-    initializeNaverLogin();
+    //@ts-ignore
+    const { naver } = window;
+    initializeNaverLogin(naver);
     userAccessToken();
   }, []);
 

@@ -30,6 +30,12 @@ const Contents = styled.div`
   align-items: center;
   background-color: inherit;
   height: 100%;
+  background-image: url("/img/background-dash.svg");
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: left;
+  background-attachment: fixed;
+  background-size: 90%;
 `;
 
 export default CommonLayout;

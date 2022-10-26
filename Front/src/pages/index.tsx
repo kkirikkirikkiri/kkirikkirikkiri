@@ -60,7 +60,7 @@ const Main = () => {
     <div className="container">
       <SMain>
         <img className="main-logo" src={"/img/logo-main.png"} alt="main" />
-        <Slider {...settings} className="banner">
+        <Slider {...settings} className="banner" dots={true}>
           <div className="banner-item">
             <img src={"/img/banner/banner_w_1.jpg"} alt="banner1" />
           </div>

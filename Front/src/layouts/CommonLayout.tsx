@@ -1,3 +1,4 @@
+import MainCharacters from "components/common/molecules/MainCharacters";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import { FC, ReactNode } from "react";
@@ -9,7 +10,11 @@ const CommonLayout: FC<ICommonLayoutProps> = ({ children }) => {
   return (
     <CommonLayoutContainer>
       <Header />
-      <Contents>{children}</Contents>
+      <Contents>
+        {children}
+        <MainCharacters location={"left"} />
+        <MainCharacters location={"right"} />
+      </Contents>
       <Footer />
     </CommonLayoutContainer>
   );
@@ -24,6 +29,7 @@ const CommonLayoutContainer = styled.div`
 `;
 
 const Contents = styled.div`
+  position: relative;
   display: flex;
   flex: 1;
   justify-content: center;

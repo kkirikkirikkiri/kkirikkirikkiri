@@ -4,6 +4,7 @@ import styled, { css } from "styled-components";
 interface ISectionProps {
   children: ReactNode | ReactNode[];
   margin?: string;
+  className?: string;
   padding?: string;
   gap?: number;
   direction?: "column" | "column-reverse" | "row" | "row-reverse";
@@ -40,6 +41,7 @@ const Section: FC<ISectionProps> = ({
   direction,
   margin,
   padding,
+  className,
 }) => {
   return (
     <Container
@@ -48,6 +50,7 @@ const Section: FC<ISectionProps> = ({
       direction={direction}
       margin={margin}
       padding={padding}
+      className={className}
     >
       {children}
     </Container>
@@ -59,7 +62,7 @@ const Container = styled.div<Omit<ISectionProps, "children">>`
   ${({ gap }) =>
     gap
       ? css`
-          gap: ${gap};
+          gap: ${gap}px;
         `
       : ""}
   ${({ flex }) =>

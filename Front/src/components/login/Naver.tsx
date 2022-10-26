@@ -12,7 +12,7 @@ export const Naver = () => {
       callbackUrl={NAVER_CALLBACK_URL}
       render={(props: any) => (
         <NaverLoginButton onClick={props.onClick}>
-          <Image src={"/img/Naver.svg"} width={14} height={12} />
+          <Image src={"/img/icon/naver.svg"} width={14} height={12} />
           네이버 로그인
         </NaverLoginButton>
       )}
@@ -35,6 +35,7 @@ const NaverLoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex: 1;
 `;
 
 export default Naver;

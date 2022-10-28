@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
+import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import Input from "components/Input";
 import MainCategory from "components/MainCategory";
 import CommonLayout from "layouts/CommonLayout";
+import Image from "next/image";
 import { ReactElement } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -16,10 +18,6 @@ const SMain = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  .main-logo {
-    width: 225px;
-    margin: 20px auto;
-  }
   .banner {
     width: 100%;
     .banner-item {
@@ -59,8 +57,9 @@ const Main = () => {
   return (
     <div className="container">
       <SMain>
-        <img className="main-logo" src={"/img/logo-main.png"} alt="main" />
-        <Slider {...settings} className="banner">
+        <Image src={"/img/logo-main.png"} alt="main" width={232} height={80} />
+        <HorizontalBlank height={30} />
+        <Slider {...settings} className="banner" dots={true}>
           <div className="banner-item">
             <img src={"/img/banner/banner_w_1.jpg"} alt="banner1" />
           </div>

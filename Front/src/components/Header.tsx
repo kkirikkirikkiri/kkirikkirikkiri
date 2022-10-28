@@ -119,7 +119,7 @@ const SHeader = styled.nav`
     }
   }
 `;
-const SM_LoginBtn = styled.div`
+const SM_LoginBtn = styled.a`
   ${media.MOBILE} {
     width: 100%;
     height: 38px;
@@ -185,7 +185,7 @@ const Header = () => {
         <div className={`dimmed ${mobileMenuOpen ? "active" : "none"}`}></div>
         <img className="logo" src={"/img/logo.png"} />
         <img className="logo-mini" src={"/img/logo-mini.svg"} />
-        <Link href="/login">
+        <Link href={"/login"}>
           <div className="account">
             <SLoginBtn>로그인</SLoginBtn>
           </div>

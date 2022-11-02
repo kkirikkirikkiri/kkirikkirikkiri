@@ -5,12 +5,6 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  exportPathMap: () => {
-    return {
-      "/": { page: "/" },
-      "/login": { page: "/login" },
-    };
-  },
 };
 
 module.exports = nextConfig;

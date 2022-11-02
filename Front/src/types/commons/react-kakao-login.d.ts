@@ -1,1 +1,1 @@
-declare module "react-naver-login";
+declare module "react-kakao-login";

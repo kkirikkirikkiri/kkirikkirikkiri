@@ -121,6 +121,7 @@ const LoginButton = styled.a`
   }
 `;
 const LoginBtn = styled.div`
+  cursor: pointer;
   background: #ffffff;
   border-radius: 10px;
   color: #000;

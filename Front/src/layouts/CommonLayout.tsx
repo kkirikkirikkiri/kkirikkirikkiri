@@ -1,6 +1,7 @@
 import MainCharacters from "components/common/molecules/MainCharacters";
 import Footer from "components/Footer";
 import Header from "components/Header";
+import media from "constants/media";
 import { FC, ReactNode } from "react";
 import styled from "styled-components";
 interface ICommonLayoutProps {
@@ -42,6 +43,9 @@ const Contents = styled.div`
   background-position-x: left;
   background-attachment: fixed;
   background-size: 90%;
+  ${media.MOBILE} {
+    background-image: unset;
+  }
 `;
 
 export default CommonLayout;

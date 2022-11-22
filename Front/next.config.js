@@ -9,7 +9,7 @@ const nextConfig = {
     unoptimized: true,
   },
   //github pages에 url때문에 임시로 적용 나중에 지워야함
-  basePath: "/kkiri",
+  // basePath: "/kkiri",
 };
 
 module.exports = nextConfig;

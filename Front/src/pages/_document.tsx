@@ -12,8 +12,8 @@ export default class MyDocument extends Document {
             name="viewport"
             content="width=device-width, initial-scale=1.0"
           />
-          <meta name="keywords" content="minds,navi,cheeu,마인즈,마인즈네비" />
-          <meta name="author" content="minds" />
+          <meta name="keywords" content="kkirikkiri" />
+          <meta name="author" content="kkirikkiri" />
         </Head>
         <body>
           <Main />

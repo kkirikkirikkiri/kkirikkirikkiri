@@ -29,16 +29,21 @@ const SMain = styled.div`
       }
     }
     .slick-dots {
-      bottom: 15px;
+      ul {
+        gap: 8px;
+      }
       li {
-        width: 3px;
+        width: 6px;
+        height: 6px;
+        border-radius: 3px;
+        background-color: #bdbdbd;
+        transition: width 0.3s;
         button::before {
-          color: #fff;
+          display: none;
         }
         &.slick-active {
-          button::before {
-            color: #fff;
-          }
+          width: 16px;
+          background-color: #848484;
         }
       }
     }

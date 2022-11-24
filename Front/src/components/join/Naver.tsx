@@ -1,14 +1,15 @@
 import Button from "components/common/atoms/Button";
 import VerticalBlank from "components/common/atoms/VerticalBlank";
 import Image from "next/image";
-import NaverLogin from "react-naver-login";
+import NaverJoin from "react-naver-login";
+import styled from "styled-components";
 
 export const Naver = () => {
   const NAVER_CLIENT_ID = "T1PLBkBiDziggLWWCwK_";
   const NAVER_CALLBACK_URL = "http://localhost:3000/login";
 
   return (
-    <NaverLogin
+    <NaverJoin
       clientId={NAVER_CLIENT_ID}
       callbackUrl={NAVER_CALLBACK_URL}
       render={(props: any) => (
@@ -27,5 +28,22 @@ export const Naver = () => {
     />
   );
 };
+
+const NaverJoinButton = styled.button`
+  cursor: pointer;
+  background: #6bbe48;
+  border-radius: 10px;
+  width: 100%;
+  min-height: 44px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: #ffffff;
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+`;
 
 export default Naver;

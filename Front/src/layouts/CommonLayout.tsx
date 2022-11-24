@@ -23,7 +23,8 @@ const CommonLayout: FC<ICommonLayoutProps> = ({ children }) => {
 
 const CommonLayoutContainer = styled.div`
   background-color: #fff;
-  overflow: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

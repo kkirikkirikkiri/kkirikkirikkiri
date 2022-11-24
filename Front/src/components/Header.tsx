@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import ROUTES from "routes/routes";
 import styled from "styled-components";
 import media from "../constants/media";
 const SHeader = styled.nav`
@@ -180,7 +181,7 @@ const MobileGNB = () => {
         </span>
         <div className="m-login">
           <span>로그인하고 끼리끼리를 마음껏 투어하세요!</span>
-          <Link href="/login">
+          <Link href={ROUTES.LOGIN.url}>
             <LoginButton>로그인</LoginButton>
           </Link>
         </div>
@@ -225,7 +226,7 @@ const Header = () => {
             objectFit="fill"
           />
         </MobileIconImageContainer>
-        <Link href={"/login"}>
+        <Link href={ROUTES.LOGIN.url}>
           <div className="account">
             <LoginBtn>로그인</LoginBtn>
           </div>

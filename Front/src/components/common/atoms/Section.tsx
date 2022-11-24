@@ -1,38 +1,17 @@
-import { FC, ReactNode } from "react";
-import styled, { css } from "styled-components";
+import { CSSProperties, FC, ReactNode } from "react";
+import styled from "styled-components";
 
 interface ISectionProps {
   children: ReactNode | ReactNode[];
-  margin?: string;
+  margin?: CSSProperties["margin"];
   className?: string;
-  padding?: string;
-  gap?: number;
-  direction?: "column" | "column-reverse" | "row" | "row-reverse";
-  justify?:
-    | "space-around"
-    | "space-between"
-    | "space-evenly"
-    | "stretch"
-    | "center"
-    | "end"
-    | "flex-end"
-    | "flex-start"
-    | "start"
-    | "left"
-    | "normal"
-    | "right";
-  align?:
-    | "center"
-    | "end"
-    | "flex-end"
-    | "flex-start"
-    | "start"
-    | "self-end"
-    | "self-start"
-    | "baseline"
-    | "normal"
-    | "stretch";
-  flex?: number | string;
+  padding?: CSSProperties["padding"];
+  gap?: CSSProperties["gap"];
+  direction?: CSSProperties["flexDirection"];
+  justify?: CSSProperties["justifyContent"];
+  align?: CSSProperties["alignItems"];
+  flex?: CSSProperties["flex"];
+  width?: CSSProperties["width"];
 }
 const Section: FC<ISectionProps> = ({
   children,
@@ -41,6 +20,7 @@ const Section: FC<ISectionProps> = ({
   direction,
   margin,
   padding,
+  width,
   className,
 }) => {
   return (
@@ -50,6 +30,7 @@ const Section: FC<ISectionProps> = ({
       direction={direction}
       margin={margin}
       padding={padding}
+      style={{ gap, flex, flexDirection: direction, margin, padding, width }}
       className={className}
     >
       {children}
@@ -59,36 +40,6 @@ const Section: FC<ISectionProps> = ({
 
 const Container = styled.div<Omit<ISectionProps, "children">>`
   display: flex;
-  ${({ gap }) =>
-    gap
-      ? css`
-          gap: ${gap}px;
-        `
-      : ""}
-  ${({ flex }) =>
-    flex
-      ? css`
-          flex: ${flex};
-        `
-      : ""}
-  ${({ margin }) =>
-    margin
-      ? css`
-          margin: ${margin};
-        `
-      : ""}
-  ${({ padding }) =>
-    padding
-      ? css`
-          padding: ${padding};
-        `
-      : ""}
-  ${({ direction }) =>
-    direction
-      ? css`
-          flex-direction: ${direction};
-        `
-      : ""}
 `;
 
 export default Section;

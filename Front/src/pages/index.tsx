@@ -3,10 +3,13 @@ import styled from "styled-components";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import Input from "components/Input";
 import MainCategory from "components/MainCategory";
+import useAppSelector from "hooks/useAppSelector";
 import CommonLayout from "layouts/CommonLayout";
 import Image from "next/image";
 import { ReactElement } from "react";
 import Slider from "react-slick";
+import { getIsSigned } from "redux/slices/authReducer";
+import { usePokemonByNameQuery, usePokemonsQuery } from "redux/slices/test";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
@@ -59,6 +62,11 @@ const Main = () => {
     autoplay: true,
     autoplaySpeed: 2000,
   };
+  const isSignedIn = useAppSelector(getIsSigned);
+  console.log("로그인:", isSignedIn);
+  const { data } = usePokemonsQuery();
+  const { data: pokemon } = usePokemonByNameQuery("bulbasaur");
+  console.log("????", pokemon, data);
   return (
     <div className="container">
       <SMain>

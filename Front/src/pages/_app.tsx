@@ -1,6 +1,8 @@
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { ReactNode } from "react";
+import { Provider } from "react-redux";
+import { store } from "redux/store";
 import "../styles/globals.css";
 
 type GetLayout = (page: ReactNode) => ReactNode;
@@ -14,7 +16,9 @@ type MyAppProps<P = {}> = AppProps<P> & {
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
-  return <>{getLayout(<Component {...pageProps} />)}</>;
+  return (
+    <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>
+  );
 }
 
 export default MyApp;

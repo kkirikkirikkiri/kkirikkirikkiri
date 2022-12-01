@@ -3,20 +3,21 @@ import Section from "components/common/atoms/Section";
 import { Kakao } from "components/join/Kakao";
 import Naver from "components/join/Naver";
 import AuthLayout from "layouts/AuthLayout";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactElement } from "react";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
 
 const Join = () => {
+  const router = useRouter();
   return (
     <>
       <ButtonContainer direction="column" gap={7}>
         <Naver />
         <Kakao />
-        <Link href={ROUTES.TERMS.url}>
-          <EmailJoinButton>이메일로 회원가입</EmailJoinButton>
-        </Link>
+        <EmailJoinButton onClick={() => router.push(ROUTES.TERMS.url)}>
+          이메일로 회원가입
+        </EmailJoinButton>
       </ButtonContainer>
     </>
   );

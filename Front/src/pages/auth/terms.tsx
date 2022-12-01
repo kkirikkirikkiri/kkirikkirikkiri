@@ -3,10 +3,13 @@ import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import HorizontalLine from "components/common/atoms/HorizontalLine";
 import Section from "components/common/atoms/Section";
 import AuthLayout from "layouts/AuthLayout";
+import { useRouter } from "next/router";
 import { ReactElement } from "react";
+import ROUTES from "routes/routes";
 import styled from "styled-components";
 
 const Join = () => {
+  const router = useRouter();
   return (
     <Container>
       <TitleFont>서비스 이용약관, 개인정보 수집 및 이용에</TitleFont>
@@ -32,7 +35,11 @@ const Join = () => {
         </div>
       </GraySection>
       <HorizontalBlank height={30} />
-      <Button background={"#fcdfc6"} color={"#000000"}>
+      <Button
+        background={"#fcdfc6"}
+        color={"#000000"}
+        onClick={() => router.push(ROUTES.JOIN_STEP.url)}
+      >
         가입하기
       </Button>
     </Container>

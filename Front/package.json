@@ -13,6 +13,7 @@
     "deploy-gh-pages": "rm -rf node_modules/.cache && next build && next export && touch out/.nojekyll && git add -f out/ && git checkout -b temp-for-deploy-gh-pages && git commit -m \"Deploy Next.js to gh-pages\" && git subtree split --prefix out -b gh-pages && git push -f origin gh-pages:gh-pages && git branch -D gh-pages && git checkout main && git branch -D temp-for-deploy-gh-pages"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.1",
     "@types/react-slick": "^0.23.10",
     "@types/styled-components": "^5.1.26",
     "gh-pages": "^4.0.0",
@@ -21,6 +22,7 @@
     "react-dom": "18.2.0",
     "react-kakao-login": "^2.1.1",
     "react-naver-login": "^0.1.4",
+    "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.6"

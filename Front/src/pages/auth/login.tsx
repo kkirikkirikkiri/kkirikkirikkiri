@@ -4,19 +4,27 @@ import Section from "components/common/atoms/Section";
 import Kakao from "components/login/Kakao";
 import LoginInput from "components/login/LoginInput";
 import Naver from "components/login/Naver";
+import useAppDispatch from "hooks/useAppDispatch";
 import AuthLayout from "layouts/AuthLayout";
-import Link from "next/link";
+import { useRouter } from "next/router";
 import { ReactElement } from "react";
+import { setIsSigned } from "redux/slices/authReducer";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
 
 const Login = () => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const handleAuth = () => {
+    dispatch(setIsSigned(true));
+    router.push("/");
+  };
   return (
     <>
       <InputContainer gap={12} direction="column">
         <LoginInput placeholder="아이디 입력" />
         <LoginInput placeholder="비밀번호 입력" />
-        <Button color={"#ffffff"} background={"#ff7f42"}>
+        <Button color={"#ffffff"} background={"#ff7f42"} onClick={handleAuth}>
           로그인
         </Button>
       </InputContainer>
@@ -26,11 +34,13 @@ const Login = () => {
         <Kakao />
       </Section>
       <HorizontalBlank height={7} />
-      <Link href={ROUTES.JOIN.url}>
-        <Button color={"#000000"} background={"#fcdfc6"}>
-          회원가입
-        </Button>
-      </Link>
+      <Button
+        color={"#000000"}
+        background={"#fcdfc6"}
+        onClick={() => router.push(ROUTES.JOIN.url)}
+      >
+        회원가입
+      </Button>
     </>
   );
 };

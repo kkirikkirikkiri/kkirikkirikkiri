@@ -24,15 +24,15 @@ const SMainIcon = styled.div`
     }
     &.color-test {
       background-color: #a17feb;
-      background-image: url("/img/icon/color.png");
+      background-image: url("/img/icon/color.svg");
     }
     &.mbti-test {
       background-color: #81d074;
-      background-image: url("/img/icon/mbti.png");
+      background-image: url("/img/icon/mbti.svg");
     }
     &.free-board {
       background-color: #76ccfd;
-      background-image: url("/img/icon/free.png");
+      background-image: url("/img/icon/free.svg");
     }
   }
   ${media.MOBILE} {

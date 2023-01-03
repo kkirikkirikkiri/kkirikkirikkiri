@@ -1,4 +1,3 @@
-import MainCharacters from "components/common/molecules/MainCharacters";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import media from "constants/media";
@@ -11,11 +10,7 @@ const CommonLayout: FC<ICommonLayoutProps> = ({ children }) => {
   return (
     <CommonLayoutContainer>
       <Header />
-      <Contents>
-        {children}
-        <MainCharacters location={"left"} />
-        <MainCharacters location={"right"} />
-      </Contents>
+      <Contents>{children}</Contents>
       <Footer />
     </CommonLayoutContainer>
   );

@@ -66,11 +66,13 @@ const Main = () => {
   console.log("로그인:", isSignedIn);
   const { data } = usePokemonsQuery();
   const { data: pokemon } = usePokemonByNameQuery("bulbasaur");
-  console.log("????", pokemon, data);
   return (
     <div className="container">
       <SMain>
-        <Image src={"/img/logo-main.png"} alt="main" width={232} height={80} />
+        <LogoContainer>
+          <Image src={"/img/Logo.svg"} alt="main" width={72} height={82} />
+          <Image src={"/img/FontLogo.svg"} alt="main" width={180} height={43} />
+        </LogoContainer>
         <HorizontalBlank height={30} />
         <Slider {...settings} className="banner" dots={true}>
           <div className="banner-item">
@@ -83,12 +85,23 @@ const Main = () => {
             <img src={"/img/banner/banner_w_3.jpg"} alt="banner3" />
           </div>
         </Slider>
-        <Input />
+        <Input
+          placeholder="내가 관심있는 심리테스트를 검색해 보세요."
+          addonPrev={
+            <Image src={"img/icon/SearchGray.svg"} width={24} height={24} />
+          }
+        />
         <MainCategory />
       </SMain>
     </div>
   );
 };
+
+const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 17px;
+`;
 
 Main.getLayout = function getLayout(page: ReactElement) {
   return <CommonLayout>{page}</CommonLayout>;

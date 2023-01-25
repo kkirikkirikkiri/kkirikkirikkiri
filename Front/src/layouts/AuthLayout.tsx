@@ -11,11 +11,10 @@ const AuthLayout: FC<ICommonLayoutProps> = ({ children }) => {
     <CommonLayout>
       <Wrapper>
         <Image
-          src={"/img/logo-main.png"}
-          layout={"fixed"}
+          src={"/img/banner/Logo.svg"}
           alt="main"
-          width={232}
-          height={80}
+          width={270}
+          height={83}
         />
         <HorizontalBlank height={30} />
         {children}

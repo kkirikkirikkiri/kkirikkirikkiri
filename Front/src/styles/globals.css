@@ -21,6 +21,7 @@ div {
 
 button {
   border: 0;
+  cursor: pointer;
 }
 
 a {

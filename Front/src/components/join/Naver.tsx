@@ -1,10 +1,15 @@
 import Button from "components/common/atoms/Button";
 import VerticalBlank from "components/common/atoms/VerticalBlank";
 import Image from "next/image";
+import { FC } from "react";
 import NaverJoin from "react-naver-login";
 import styled from "styled-components";
 
-export const Naver = () => {
+interface NaverProps {
+  title?: string;
+}
+
+export const Naver: FC<NaverProps> = ({ title = "네이버 로그인" }) => {
   const NAVER_CLIENT_ID = "T1PLBkBiDziggLWWCwK_";
   const NAVER_CALLBACK_URL = "http://localhost:3000/login";
 
@@ -20,7 +25,7 @@ export const Naver = () => {
         >
           <Image src={"/img/icon/naver.svg"} width={14} height={12} />
           <VerticalBlank width={4} />
-          네이버 로그인
+          {title}
         </Button>
       )}
       onSuccess={(naverUser: any) => console.log(naverUser)}

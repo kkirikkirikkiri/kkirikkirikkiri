@@ -1,18 +1,16 @@
-import Button from "components/common/atoms/Button";
-import HorizontalBlank from "components/common/atoms/HorizontalBlank";
-import HorizontalLine from "components/common/atoms/HorizontalLine";
+import CheckBox from "components/common/atoms/CheckBox";
 import Section from "components/common/atoms/Section";
 import AuthLayout from "layouts/AuthLayout";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
-import ROUTES from "routes/routes";
 import styled from "styled-components";
 
 const Join = () => {
   const router = useRouter();
   return (
     <Container>
-      <TitleFont>서비스 이용약관, 개인정보 수집 및 이용에</TitleFont>
+      <CheckBox>이용약관 전체 동의하기</CheckBox>
+      {/* <TitleFont>서비스 이용약관, 개인정보 수집 및 이용에</TitleFont>
       <TitleFont>모두 동의합니다.</TitleFont>
       <HorizontalLine color="#e0e0e0" marginHorizontal={30} />
       <TitleFont>서비스 사용약관(필수)</TitleFont>
@@ -41,7 +39,7 @@ const Join = () => {
         onClick={() => router.push(ROUTES.JOIN_STEP.url)}
       >
         가입하기
-      </Button>
+      </Button> */}
     </Container>
   );
 };

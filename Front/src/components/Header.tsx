@@ -71,7 +71,8 @@ const Header = () => {
   );
 };
 const SHeader = styled.nav`
-  width: 1100px;
+  max-width: 1100px;
+  width: 70vw;
   display: flex;
   height: 76px;
   align-items: center;

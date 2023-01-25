@@ -12,9 +12,9 @@ const Join = () => {
   const router = useRouter();
   return (
     <>
-      <ButtonContainer direction="column" gap={7}>
-        <Naver />
-        <Kakao />
+      <ButtonContainer direction="column" gap={16}>
+        <Kakao title="네이버 계정으로 회원가입" />
+        <Naver title="카카오 계정으로 회원가입" />
         <EmailJoinButton onClick={() => router.push(ROUTES.TERMS.url)}>
           이메일로 회원가입
         </EmailJoinButton>
@@ -32,8 +32,8 @@ const ButtonContainer = styled(Section)`
 
 const EmailJoinButton = styled(Button)`
   border: 1px solid #bdbdbd;
-  background: #fafafa;
-  border: 1px solid #bdbdbd;
+  background: #fff;
+  color: #424242;
 `;
 
 export default Join;

@@ -1,5 +1,6 @@
 import Button from "components/common/atoms/Button";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
+import HorizontalLine from "components/common/atoms/HorizontalLine";
 import Section from "components/common/atoms/Section";
 import Kakao from "components/login/Kakao";
 import LoginInput from "components/login/LoginInput";
@@ -24,23 +25,32 @@ const Login = () => {
       <InputContainer gap={12} direction="column">
         <LoginInput placeholder="아이디 입력" />
         <LoginInput placeholder="비밀번호 입력" />
-        <Button color={"#ffffff"} background={"#ff7f42"} onClick={handleAuth}>
+      </InputContainer>
+      <HorizontalBlank height={12} />
+      <ButtonContainer>
+        <Button
+          color={"#424242"}
+          background={"#fff"}
+          border={"1px solid #DBDBDB"}
+          onClick={() => router.push(ROUTES.JOIN.url)}
+        >
+          회원가입
+        </Button>
+        <Button color={"#ffffff"} background={"#78C3ED"} onClick={handleAuth}>
           로그인
         </Button>
-      </InputContainer>
-      <HorizontalBlank height={30} />
-      <Section gap={4} width={"100%"}>
+      </ButtonContainer>
+      <HorizontalBlank height={60} />
+      <LineContainer>
+        <HorizontalLine />
+        <span>SNS 계정으로 로그인</span>
+        <HorizontalLine />
+      </LineContainer>
+      <HorizontalBlank height={24} />
+      <Section direction={"column"} gap={12} width={"100%"}>
         <Naver />
         <Kakao />
       </Section>
-      <HorizontalBlank height={7} />
-      <Button
-        color={"#000000"}
-        background={"#fcdfc6"}
-        onClick={() => router.push(ROUTES.JOIN.url)}
-      >
-        회원가입
-      </Button>
     </>
   );
 };
@@ -52,21 +62,22 @@ const InputContainer = styled(Section)`
   width: 100%;
 `;
 
-const LoginButton = styled.button`
-  cursor: pointer;
-  height: 44px;
-  background: #ff7f42;
-  border-radius: 10px;
-  font-weight: 400;
-  font-size: 12px;
-  color: #ffffff;
+const ButtonContainer = styled.div`
+  display: flex;
+  gap: 8px;
   width: 100%;
 `;
 
-const JoinButton = styled(LoginButton)`
-  background: #fcdfc6;
-  color: #000000;
-  margin-top: 7px;
+const LineContainer = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 16px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  color: #c2c2c2;
+  white-space: pre;
 `;
-
 export default Login;

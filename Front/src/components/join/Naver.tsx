@@ -5,11 +5,7 @@ import { FC } from "react";
 import NaverJoin from "react-naver-login";
 import styled from "styled-components";
 
-interface NaverProps {
-  title?: string;
-}
-
-export const Naver: FC<NaverProps> = ({ title = "네이버 로그인" }) => {
+export const Naver: FC = () => {
   const NAVER_CLIENT_ID = "T1PLBkBiDziggLWWCwK_";
   const NAVER_CALLBACK_URL = "http://localhost:3000/login";
 
@@ -25,7 +21,7 @@ export const Naver: FC<NaverProps> = ({ title = "네이버 로그인" }) => {
         >
           <Image src={"/img/icon/naver.svg"} width={14} height={12} />
           <VerticalBlank width={4} />
-          {title}
+          {"카카오 계정으로 회원가입"}
         </Button>
       )}
       onSuccess={(naverUser: any) => console.log(naverUser)}

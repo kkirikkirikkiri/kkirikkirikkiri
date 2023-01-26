@@ -21,8 +21,8 @@ const ButtonContainer = styled.button<
   cursor: pointer;
   height: 44px;
   border: ${({ border }) => border ?? "none"};
-  background: ${({ background }) => background ?? "inherit"};
-  color: ${({ color }) => color ?? "inherit"};
+  background: ${({ background }) => background ?? "#78C3ED"};
+  color: ${({ color }) => color ?? "#EEF6FA"};
   border-radius: 30px;
   width: 100%;
   font-weight: 400;

@@ -26,7 +26,7 @@ const CircleItem = styled.div<{ active: boolean; title: string }>`
   height: 10px;
   width: 10px;
   border-radius: 5px;
-  background: ${({ active }) => (active ? "#EE7B45" : "#c2c2c2")};
+  background: ${({ active }) => (active ? "#78C3ED" : "#c2c2c2")};
   display: flex;
   justify-content: center;
   ::before {
@@ -37,7 +37,7 @@ const CircleItem = styled.div<{ active: boolean; title: string }>`
     font-size: 12px;
     line-height: 100%;
     letter-spacing: -0.5px;
-    color: ${({ active }) => (active ? "#EE7B45" : "#c2c2c2")};
+    color: ${({ active }) => (active ? "#78C3ED" : "#c2c2c2")};
   }
 `;
 

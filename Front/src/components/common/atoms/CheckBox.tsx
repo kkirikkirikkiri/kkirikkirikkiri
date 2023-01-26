@@ -6,8 +6,13 @@ const CheckBox: FC<InputHTMLAttributes<HTMLInputElement>> = ({
 }) => {
   return (
     <CheckBoxContainer>
-      <input type="checkbox" {...inputProps} />
-      <span>{children}</span>
+      <input
+        type="checkbox"
+        {...inputProps}
+        id={inputProps.id}
+        onChange={(e) => console.log(e.target.checked)}
+      />
+      <label htmlFor={inputProps.id}>{children}</label>
     </CheckBoxContainer>
   );
 };
@@ -26,31 +31,21 @@ const CheckBoxContainer = styled.div`
     height: 0;
     width: 0;
   }
-  span {
-    position: relative;
-    cursor: pointer;
-    display: inline-block;
+  input + label {
+    display: flex;
+    gap: 8px;
+  }
+  input + label:before {
+    display: block;
+    content: "";
     width: 22px;
     height: 22px;
-    margin-right: 10px;
-    border-radius: 11px;
-    &:after {
-      content: "";
-      position: absolute;
-      display: none;
-    }
+    background-image: url("/img/icon/checkbox.svg");
   }
-  input:checked ~ span:after {
+  input:checked + label:before {
     display: block;
-  }
-  span:after {
-    left: 5px;
-    top: 1px;
-    width: 4px;
-    height: 8px;
-    border: solid #424242;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
+    content: "";
+    background-image: url("/img/icon/checkbox_checked.svg");
   }
 `;
 

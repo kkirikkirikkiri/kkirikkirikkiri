@@ -1,15 +1,25 @@
+import HorizontalBlank from "components/common/atoms/HorizontalBlank";
+import AuthEmail from "components/join-step/AuthEmail";
 import Navigation from "components/join-step/Navigation";
+import UserInfoInput from "components/join-step/UserInfoInput";
 import AuthLayout from "layouts/AuthLayout";
-import { ReactElement, useState } from "react";
+import { ReactElement, useCallback, useState } from "react";
 import styled from "styled-components";
 
 const JoinStep = () => {
   const [step, setStep] = useState(0);
+  const handleNextStep = useCallback(() => {
+    setStep((prev) => prev + 1);
+  }, []);
+  console.log("step", step);
   return (
     <>
       <Navigation step={step} />
       <Container>
         <TitleFont>이메일 인증하기</TitleFont>
+        <HorizontalBlank height={16} />
+        {step === 0 && <AuthEmail onNext={handleNextStep} />}
+        {step === 1 && <UserInfoInput onNext={handleNextStep} />}
       </Container>
     </>
   );

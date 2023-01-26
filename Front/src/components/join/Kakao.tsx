@@ -6,10 +6,7 @@ import KakaoJoin from "react-kakao-login";
 import styled from "styled-components";
 
 const token = "64d0c649f5b7e5a3ef9790587ee5f19b";
-interface KakaoProps {
-  title?: string;
-}
-export const Kakao: FC<KakaoProps> = ({ title = "카카오 로그인" }) => {
+const Kakao: FC = () => {
   return (
     <KakaoJoin
       token={token}
@@ -21,7 +18,7 @@ export const Kakao: FC<KakaoProps> = ({ title = "카카오 로그인" }) => {
           <Button onClick={onClick} background={"#f8d756"} color={"#050505"}>
             <Image src={"/img/icon/kakao.svg"} width={14} height={12} />
             <VerticalBlank width={4} />
-            {title}
+            {"네이버 계정으로 회원가입"}
           </Button>
         );
       }}

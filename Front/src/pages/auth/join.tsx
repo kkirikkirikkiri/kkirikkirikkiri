@@ -1,6 +1,6 @@
 import Button from "components/common/atoms/Button";
 import Section from "components/common/atoms/Section";
-import { Kakao } from "components/join/Kakao";
+import Kakao from "components/join/Kakao";
 import Naver from "components/join/Naver";
 import AuthLayout from "layouts/AuthLayout";
 import { useRouter } from "next/router";
@@ -13,8 +13,8 @@ const Join = () => {
   return (
     <>
       <ButtonContainer direction="column" gap={16}>
-        <Kakao title="네이버 계정으로 회원가입" />
-        <Naver title="카카오 계정으로 회원가입" />
+        <Kakao />
+        <Naver />
         <EmailJoinButton onClick={() => router.push(ROUTES.TERMS.url)}>
           이메일로 회원가입
         </EmailJoinButton>

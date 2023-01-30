@@ -3,7 +3,6 @@ import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import Section from "components/common/atoms/Section";
 import LoginInput from "components/login/LoginInput";
 import { FC, useCallback } from "react";
-import styled from "styled-components";
 interface UserInfoInputProps {
   onNext: () => void;
 }
@@ -24,20 +23,5 @@ const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
     </>
   );
 };
-
-const AuthInputContainer = styled.div`
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  & > a {
-    position: absolute;
-    font-weight: 500;
-    right: 13px;
-    font-size: 12px;
-    line-height: 100%;
-    color: #78c3ed;
-  }
-`;
 
 export default UserInfoInput;

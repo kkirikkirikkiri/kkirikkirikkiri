@@ -1,7 +1,11 @@
+import Button from "components/common/atoms/Button";
+import CommonSelect from "components/common/atoms/CommonSelect";
+import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import HorizontalLine from "components/common/atoms/HorizontalLine";
+import Section from "components/common/atoms/Section";
 import React, { FC, useCallback, useState } from "react";
-import Select from "react-select";
 import styled from "styled-components";
+import ColorSelect from "./ColorSelect";
 interface DetailProfileInputProps {
   onNext: () => void;
 }
@@ -78,6 +82,9 @@ const DetailProfileInput: FC<DetailProfileInputProps> = ({ onNext }) => {
     "ENFJ",
     "ENTJ",
   ];
+
+  const bloodTypeList = ["A", "B", "O", "AB"];
+
   return (
     <>
       <HorizontalLine color="#EAEAEA" marginHorizontal={24} />
@@ -92,10 +99,27 @@ const DetailProfileInput: FC<DetailProfileInputProps> = ({ onNext }) => {
           <CameraIcon />
         </IconContainer>
       </ImageTemplateContainer>
-      <Select
-        options={mbtiList.map((item) => ({ label: item, value: item }))}
-        // onChange={}
-      />
+      <HorizontalBlank height={24} />
+      <SelectContainer>
+        <CommonSelect
+          placeholder="나의 MBTI를 선택해 주세요."
+          options={mbtiList.map((item) => ({ label: item, value: item }))}
+        />
+        <CommonSelect
+          placeholder="나의 혈액형을 입력해 주세요."
+          options={bloodTypeList.map((item) => ({
+            label: `${item}형`,
+            value: item,
+          }))}
+        />
+        <ColorSelect />
+      </SelectContainer>
+      <Section margin="32px 0 0 0" gap={8}>
+        <Button color="#9A9A9A" background={"#F5F5F5"}>
+          건너뛰기
+        </Button>
+        <Button>가입하기</Button>
+      </Section>
     </>
   );
 };
@@ -133,6 +157,11 @@ const IconContainer = styled.label`
   position: absolute;
   right: -9px;
   bottom: 3px;
+`;
+
+const SelectContainer = styled.div`
+  display: grid;
+  grid-gap: 16px;
 `;
 
 export default DetailProfileInput;

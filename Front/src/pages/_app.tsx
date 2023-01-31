@@ -1,8 +1,7 @@
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
-import { ReactNode } from "react";
-import { Provider } from "react-redux";
-import { store } from "redux/store";
+import { ReactNode, useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 import "../styles/globals.css";
 
 type GetLayout = (page: ReactNode) => ReactNode;
@@ -16,8 +15,27 @@ type MyAppProps<P = {}> = AppProps<P> & {
 
 function MyApp({ Component, pageProps }: MyAppProps) {
   const getLayout = Component.getLayout ?? ((page: ReactNode) => page);
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            retry: 2,
+            retryDelay: 1000,
+            refetchOnWindowFocus: false,
+          },
+          mutations: {
+            retry: 1,
+            retryDelay: 0,
+          },
+        },
+      })
+  );
+
   return (
-    <Provider store={store}>{getLayout(<Component {...pageProps} />)}</Provider>
+    <QueryClientProvider client={queryClient}>
+      {getLayout(<Component {...pageProps} />)}
+    </QueryClientProvider>
   );
 }
 

@@ -6,12 +6,7 @@ const CheckBox: FC<InputHTMLAttributes<HTMLInputElement>> = ({
 }) => {
   return (
     <CheckBoxContainer>
-      <input
-        type="checkbox"
-        {...inputProps}
-        id={inputProps.id}
-        onChange={(e) => console.log(e.target.checked)}
-      />
+      <input type="checkbox" {...inputProps} id={inputProps.id} />
       <label htmlFor={inputProps.id}>{children}</label>
     </CheckBoxContainer>
   );

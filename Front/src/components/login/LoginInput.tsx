@@ -1,23 +1,8 @@
-import { FC, InputHTMLAttributes } from "react";
-import styled from "styled-components";
+import Input, { InputProps } from "components/Input";
+import { FC } from "react";
 
-const LoginInput: FC<InputHTMLAttributes<any>> = (props) => {
-  return <Input {...props} />;
+const LoginInput: FC<InputProps> = (props) => {
+  return <Input borderType="line" {...props} />;
 };
-
-const Input = styled.input`
-  height: 44px;
-  background: #ffffff;
-  border: 1px solid #dbdbdb;
-  border-radius: 12px;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 16px 15px;
-  ::placeholder {
-    font-size: 12px;
-    line-height: 100%;
-    color: #bdbdbd;
-  }
-`;
 
 export default LoginInput;

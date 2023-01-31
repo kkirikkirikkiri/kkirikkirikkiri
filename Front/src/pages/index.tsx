@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
+import Section from "components/common/atoms/Section";
 import Input from "components/Input";
 import MainCategory from "components/MainCategory";
-import useAppSelector from "hooks/useAppSelector";
 import CommonLayout from "layouts/CommonLayout";
 import Image from "next/image";
 import { ReactElement } from "react";
 import Slider from "react-slick";
-import { getIsSigned } from "redux/slices/authReducer";
-import { usePokemonByNameQuery, usePokemonsQuery } from "redux/slices/test";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
@@ -62,10 +60,10 @@ const Main = () => {
     autoplay: true,
     autoplaySpeed: 2000,
   };
-  const isSignedIn = useAppSelector(getIsSigned);
-  console.log("로그인:", isSignedIn);
-  const { data } = usePokemonsQuery();
-  const { data: pokemon } = usePokemonByNameQuery("bulbasaur");
+  // const isSignedIn = useAppSelector(getIsSigned);
+  // console.log("로그인:", isSignedIn);
+  // const { data } = usePokemonsQuery();
+  // const { data: pokemon } = usePokemonByNameQuery("bulbasaur");
   return (
     <div className="container">
       <SMain>
@@ -85,12 +83,14 @@ const Main = () => {
             <img src={"/img/banner/banner_w_3.jpg"} alt="banner3" />
           </div>
         </Slider>
-        <Input
-          placeholder="내가 관심있는 심리테스트를 검색해 보세요."
-          addonPrev={
-            <Image src={"img/icon/SearchGray.svg"} width={24} height={24} />
-          }
-        />
+        <Section margin={"60px 0"} width={"100%"}>
+          <Input
+            placeholder="내가 관심있는 심리테스트를 검색해 보세요."
+            addonPrev={
+              <Image src={"img/icon/SearchGray.svg"} width={24} height={24} />
+            }
+          />
+        </Section>
         <MainCategory />
       </SMain>
     </div>

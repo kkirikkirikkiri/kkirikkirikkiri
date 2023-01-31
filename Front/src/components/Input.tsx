@@ -1,35 +1,73 @@
-import { FC, InputHTMLAttributes } from "react";
-import styled from "styled-components";
-import media from "../constants/media";
-
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
+import styled, { css } from "styled-components";
+type BorderType = "shadow" | "line";
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   addonPrev?: React.ReactNode;
   addonNext?: React.ReactNode;
+  borderType?: BorderType;
+  error?: boolean;
+  errorMessage?: string;
 }
-const Input: FC<InputProps> = ({ addonPrev, addonNext, ...inputProps }) => {
+const Input = (
+  {
+    addonPrev,
+    addonNext,
+    className,
+    error,
+    errorMessage,
+    borderType = "shadow",
+    ...inputProps
+  }: InputProps,
+  ref: ForwardedRef<HTMLInputElement>
+) => {
+  console.log("error", error);
   return (
-    <InputContainer>
-      {addonPrev && <PrevIconContainer>{addonPrev}</PrevIconContainer>}
-      <input {...inputProps} />
-      {addonNext && <NextIconContainer>{addonNext}</NextIconContainer>}
-    </InputContainer>
+    <InputErrorContainer>
+      <InputContainer
+        className={className}
+        borderType={borderType}
+        error={!!error}
+      >
+        {addonPrev && <PrevIconContainer>{addonPrev}</PrevIconContainer>}
+        <input {...inputProps} ref={ref} />
+        {addonNext && <NextIconContainer>{addonNext}</NextIconContainer>}
+      </InputContainer>
+      {error && <ErrorMessageFont>{errorMessage}</ErrorMessageFont>}
+    </InputErrorContainer>
   );
 };
-const InputContainer = styled.div`
+
+const InputErrorContainer = styled.div`
+  /* display: flex;
+  flex-direction: column; */
   width: 100%;
-  margin: 60px 0;
+`;
+const InputContainer = styled.div<{ borderType: BorderType; error: boolean }>`
+  width: inherit;
   position: relative;
   display: flex;
   align-items: center;
-  filter: drop-shadow(0px 0px 8px rgba(22, 22, 22, 0.1));
+  ${({ borderType }) =>
+    borderType === "shadow"
+      ? css`
+          filter: drop-shadow(0px 0px 8px rgba(22, 22, 22, 0.1));
+        `
+      : null}
   height: 44px;
   background: #ffffff;
   border-radius: 10px;
   input {
     padding: 0 12px;
     height: 44px;
-    width: 100%;
-    border: 0;
+    width: inherit;
+    ${({ borderType, error }) =>
+      css`
+        border: ${error
+          ? "1px solid red"
+          : borderType === "line"
+          ? "1px solid #dbdbdb"
+          : 0};
+      `}
     font-family: "Noto Sans KR";
     font-style: normal;
     font-weight: 350;
@@ -44,9 +82,13 @@ const InputContainer = styled.div`
       outline: none;
     }
   }
-  ${media.MOBILE} {
-    margin: 30px 0;
-  }
+`;
+
+const ErrorMessageFont = styled.div`
+  color: #ff0000;
+  font-weight: 350;
+  font-size: 12px;
+  margin-top: 4px;
 `;
 
 const PrevIconContainer = styled.div`
@@ -54,6 +96,7 @@ const PrevIconContainer = styled.div`
   padding-left: 16px;
 `;
 const NextIconContainer = styled(PrevIconContainer)`
+  position: absolute;
   right: 0;
 `;
-export default Input;
+export default forwardRef<HTMLInputElement, InputProps>(Input);

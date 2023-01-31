@@ -2,29 +2,27 @@ import Button from "components/common/atoms/Button";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import HorizontalLine from "components/common/atoms/HorizontalLine";
 import Section from "components/common/atoms/Section";
+import Input from "components/Input";
 import Kakao from "components/login/Kakao";
-import LoginInput from "components/login/LoginInput";
 import Naver from "components/login/Naver";
-import useAppDispatch from "hooks/useAppDispatch";
 import AuthLayout from "layouts/AuthLayout";
 import { useRouter } from "next/router";
 import { ReactElement } from "react";
-import { setIsSigned } from "redux/slices/authReducer";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
 
 const Login = () => {
   const router = useRouter();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const handleAuth = () => {
-    dispatch(setIsSigned(true));
+    // dispatch(setIsSigned(true));
     router.push("/");
   };
   return (
     <>
       <InputContainer gap={12} direction="column">
-        <LoginInput placeholder="아이디 입력" />
-        <LoginInput placeholder="비밀번호 입력" />
+        <Input borderType="line" placeholder="아이디 입력" />
+        <Input borderType="line" placeholder="비밀번호 입력" />
       </InputContainer>
       <HorizontalBlank height={12} />
       <ButtonContainer>

@@ -1,28 +1,55 @@
+import { yupResolver } from "@hookform/resolvers/yup";
+import { SignInRequest, useSignInMutate } from "apis/auth";
 import Button from "components/common/atoms/Button";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import HorizontalLine from "components/common/atoms/HorizontalLine";
+import Input from "components/common/atoms/Input";
+import PasswordInput from "components/common/atoms/PasswordInput";
 import Section from "components/common/atoms/Section";
-import Input from "components/Input";
 import Kakao from "components/login/Kakao";
 import Naver from "components/login/Naver";
 import AuthLayout from "layouts/AuthLayout";
 import { useRouter } from "next/router";
-import { ReactElement } from "react";
+import { ReactElement, useCallback } from "react";
+import { useForm } from "react-hook-form";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
+import * as yup from "yup";
 
 const Login = () => {
   const router = useRouter();
-  // const dispatch = useAppDispatch();
-  const handleAuth = () => {
-    // dispatch(setIsSigned(true));
-    router.push("/");
-  };
+
+  const { mutateAsync } = useSignInMutate();
+  const schema = yup.object().shape({
+    password: yup.string().required("비밀번호를 입력해주세요."),
+    email: yup.string().required("아이디를 입력해주세요."),
+  });
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<SignInRequest>({
+    resolver: yupResolver(schema),
+  });
+
+  const onSubmit = useCallback(async (data: SignInRequest) => {
+    console.log("subit", data);
+    const result = await mutateAsync({ ...data, isSocial: "일반" });
+    console.log("result", result);
+    // router.push("/");
+  }, []);
+
+  console.log("watch", watch(), errors);
   return (
-    <>
+    <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <InputContainer gap={12} direction="column">
-        <Input borderType="line" placeholder="아이디 입력" />
-        <Input borderType="line" placeholder="비밀번호 입력" />
+        <Input
+          {...register("email")}
+          borderType="line"
+          placeholder="아이디 입력"
+        />
+        <PasswordInput {...register("password")} />
       </InputContainer>
       <HorizontalBlank height={12} />
       <ButtonContainer>
@@ -34,7 +61,7 @@ const Login = () => {
         >
           회원가입
         </Button>
-        <Button color={"#ffffff"} background={"#78C3ED"} onClick={handleAuth}>
+        <Button color={"#ffffff"} background={"#78C3ED"} type={"submit"}>
           로그인
         </Button>
       </ButtonContainer>
@@ -49,7 +76,7 @@ const Login = () => {
         <Naver />
         <Kakao />
       </Section>
-    </>
+    </FormContainer>
   );
 };
 Login.getLayout = function getLayout(page: ReactElement) {
@@ -78,4 +105,9 @@ const LineContainer = styled.div`
   color: #c2c2c2;
   white-space: pre;
 `;
+
+const FormContainer = styled.form`
+  width: 100%;
+`;
+
 export default Login;

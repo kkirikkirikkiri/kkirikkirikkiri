@@ -1,4 +1,4 @@
-import Input, { InputProps } from "components/Input";
+import Input, { InputProps } from "components/common/atoms/Input";
 import { FC } from "react";
 
 const LoginInput: FC<InputProps> = (props) => {

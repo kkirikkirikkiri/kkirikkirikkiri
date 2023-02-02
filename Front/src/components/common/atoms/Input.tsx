@@ -20,7 +20,6 @@ const Input = (
   }: InputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
-  console.log("error", error);
   return (
     <InputErrorContainer>
       <InputContainer

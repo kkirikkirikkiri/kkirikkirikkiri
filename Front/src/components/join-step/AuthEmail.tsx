@@ -1,7 +1,7 @@
 import Button from "components/common/atoms/Button";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
+import Input from "components/common/atoms/Input";
 import Section from "components/common/atoms/Section";
-import Input from "components/Input";
 import { FC, useCallback, useState } from "react";
 import styled from "styled-components";
 interface AuthEmailProps {

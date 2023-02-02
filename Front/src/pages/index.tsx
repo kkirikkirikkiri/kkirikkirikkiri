@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
+import Input from "components/common/atoms/Input";
 import Section from "components/common/atoms/Section";
-import Input from "components/Input";
 import MainCategory from "components/MainCategory";
 import CommonLayout from "layouts/CommonLayout";
 import Image from "next/image";
@@ -60,10 +60,7 @@ const Main = () => {
     autoplay: true,
     autoplaySpeed: 2000,
   };
-  // const isSignedIn = useAppSelector(getIsSigned);
-  // console.log("로그인:", isSignedIn);
-  // const { data } = usePokemonsQuery();
-  // const { data: pokemon } = usePokemonByNameQuery("bulbasaur");
+
   return (
     <div className="container">
       <SMain>

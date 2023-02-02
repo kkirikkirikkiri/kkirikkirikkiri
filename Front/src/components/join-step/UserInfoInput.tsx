@@ -2,8 +2,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { JoinRequest, useJoinMutate } from "apis/auth";
 import Button from "components/common/atoms/Button";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
+import Input from "components/common/atoms/Input";
+import PasswordInput from "components/common/atoms/PasswordInput";
 import Section from "components/common/atoms/Section";
-import Input from "components/Input";
 import { FC, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -11,15 +12,12 @@ interface UserInfoInputProps {
   onNext: () => void;
 }
 
-interface AuthForm extends JoinRequest {
-  newPassword: string;
-}
 const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
   const { mutateAsync } = useJoinMutate();
   const schema = yup.object().shape({
     password: yup.string().required("비밀번호를 입력해주세요."),
     nickName: yup.string().required("닉네임을 입력해주세요."),
-    newPassword: yup
+    passwordConfirm: yup
       .string()
       .required("비밀번호를 다시 입력해주세요.")
       .test({
@@ -39,14 +37,12 @@ const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<AuthForm>({
+  } = useForm<JoinRequest>({
     resolver: yupResolver(schema),
   });
 
-  console.log("????", errors, watch());
-
-  const onSubmit = useCallback(async (data: AuthForm) => {
-    // const result = await mutateAsync(data);
+  const onSubmit = useCallback(async (data: JoinRequest) => {
+    const result = await mutateAsync({ ...data, isSocial: "일반" });
     onNext();
   }, []);
   return (
@@ -59,19 +55,17 @@ const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
           error={!!errors.email}
           errorMessage={errors.email?.message}
         />
-        <Input
-          borderType="line"
+        <PasswordInput
           {...register("password")}
           placeholder="비밀번호를 입력해 주세요"
           error={!!errors.password}
           errorMessage={errors.password?.message}
         />
-        <Input
-          borderType="line"
-          {...register("newPassword")}
+        <PasswordInput
+          {...register("passwordConfirm")}
           placeholder="비밀번호를 다시 입력해 주세요"
-          error={!!errors.newPassword}
-          errorMessage={errors.newPassword?.message}
+          error={!!errors.passwordConfirm}
+          errorMessage={errors.passwordConfirm?.message}
         />
         <Input
           borderType="line"

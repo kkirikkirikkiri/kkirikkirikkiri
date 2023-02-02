@@ -16,9 +16,24 @@ export const useJoinMutate = () => {
   });
 };
 
+interface SignInResponse {
+  jwt: string;
+  user: {
+    id: string;
+    createdAt: string;
+    updatedAt: string;
+    deletedAt: string;
+    email: string;
+    nickName: string;
+    isBloodTypes: string;
+    isMbti: string;
+    isSocial: string;
+    isColorTypes: string;
+  };
+}
 export type SignInRequest = Omit<JoinRequest, "nickName" | "passwordConfirm">;
 export const useSignInMutate = () => {
   return useMutation((params: SignInRequest) => {
-    return axiosInstance.post(`/auth/login`, params);
+    return axiosInstance.post<SignInResponse>(`/auth/login`, params);
   });
 };

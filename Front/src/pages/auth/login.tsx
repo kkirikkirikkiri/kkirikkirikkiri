@@ -8,9 +8,10 @@ import PasswordInput from "components/common/atoms/PasswordInput";
 import Section from "components/common/atoms/Section";
 import Kakao from "components/login/Kakao";
 import Naver from "components/login/Naver";
+import Cookies from "js-cookie";
 import AuthLayout from "layouts/AuthLayout";
 import { useRouter } from "next/router";
-import { ReactElement, useCallback } from "react";
+import { ReactElement, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
@@ -18,7 +19,7 @@ import * as yup from "yup";
 
 const Login = () => {
   const router = useRouter();
-
+  const [loginResultMessage, setLoginResultMessage] = useState<string>("");
   const { mutateAsync } = useSignInMutate();
   const schema = yup.object().shape({
     password: yup.string().required("비밀번호를 입력해주세요."),
@@ -32,14 +33,27 @@ const Login = () => {
   } = useForm<SignInRequest>({
     resolver: yupResolver(schema),
   });
+  const password = watch("password");
+  const email = watch("email");
 
   const onSubmit = useCallback(async (data: SignInRequest) => {
     console.log("subit", data);
-    const result = await mutateAsync({ ...data, isSocial: "일반" });
-    console.log("result", result);
+    try {
+      const result = await mutateAsync({ ...data, isSocial: "일반" });
+      Cookies.set("accessToken", result?.data?.jwt);
+      console.log("result", result);
+    } catch (error) {
+      console.log("error", error);
+      setLoginResultMessage((error as Error).message);
+    }
+    //setcookie
+
     // router.push("/");
   }, []);
 
+  useEffect(() => {
+    setLoginResultMessage("");
+  }, [password, email]);
   console.log("watch", watch(), errors);
   return (
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -48,8 +62,17 @@ const Login = () => {
           {...register("email")}
           borderType="line"
           placeholder="아이디 입력"
+          error={!!errors.email}
+          errorMessage={errors.email?.message}
         />
-        <PasswordInput {...register("password")} />
+        <PasswordInput
+          {...register("password")}
+          error={!!errors.password}
+          errorMessage={errors.password?.message}
+        />
+        {loginResultMessage && (
+          <ErrorContainer>{loginResultMessage}</ErrorContainer>
+        )}
       </InputContainer>
       <HorizontalBlank height={12} />
       <ButtonContainer>
@@ -110,4 +133,15 @@ const FormContainer = styled.form`
   width: 100%;
 `;
 
+const ErrorContainer = styled.div`
+  display: flex;
+  align-items: center;
+  height: 43px;
+  background: rgba(255, 82, 82, 0.05);
+  font-weight: 400;
+  font-size: 11px;
+  padding: 16px;
+  line-height: 100%;
+  color: #ff5252;
+`;
 export default Login;

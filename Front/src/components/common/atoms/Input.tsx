@@ -50,12 +50,16 @@ const InputContainer = styled.div<{ borderType: BorderType; error: boolean }>`
     borderType === "shadow"
       ? css`
           filter: drop-shadow(0px 0px 8px rgba(22, 22, 22, 0.1));
+          &:focus-within {
+            filter: drop-shadow(0px 0px 8px rgba(120, 195, 237, 0.5));
+          }
         `
       : null}
   height: 44px;
   background: #ffffff;
   border-radius: 10px;
   input {
+    caret-color: #78c3ed;
     padding: 0 12px;
     height: 44px;
     width: inherit;
@@ -66,6 +70,9 @@ const InputContainer = styled.div<{ borderType: BorderType; error: boolean }>`
           : borderType === "line"
           ? "1px solid #dbdbdb"
           : 0};
+        &:focus-within {
+          border-color: #78c3ed;
+        }
       `}
     font-family: "Noto Sans KR";
     font-style: normal;

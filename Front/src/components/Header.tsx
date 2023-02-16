@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
+import UserInfo from "./login/UserInfo";
 const MobileGNB = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   return (
@@ -76,9 +77,13 @@ const Header = () => {
         </>
       )}
       <RightContainer>
-        <Link href={ROUTES.LOGIN.url}>
-          <LoginButton>로그인</LoginButton>
-        </Link>
+        {isAuthed ? (
+          <UserInfo />
+        ) : (
+          <Link href={ROUTES.LOGIN.url}>
+            <LoginButton>로그인</LoginButton>
+          </Link>
+        )}
       </RightContainer>
     </SHeader>
   );

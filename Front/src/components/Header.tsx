@@ -1,3 +1,6 @@
+import media from "constants/media";
+import useAuth from "hooks/useAuth";
+import useMediaQuery from "hooks/useMediaQuery";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -50,23 +53,33 @@ const MobileGNB = () => {
 };
 
 const Header = () => {
+  const isMobile = useMediaQuery(media.mobileMaxWidth);
+  const { isAuthed } = useAuth();
+  console.log("isAuthed", isAuthed);
   return (
     <SHeader>
-      <div>
-        {/* <MobileGNB /> */}
-        {/* <div>
-          <Image
-            className="logo-mini"
-            src={"/img/logo-mini.svg"}
-            width={39}
-            height={35}
-            objectFit="fill"
-          />
-        </div> */}
+      {/* <MobileGNB /> */}
+      {isMobile && (
+        <>
+          <LeftContainer>
+            <Image
+              src={"/img/icon/hamberger.svg"}
+              alt="main"
+              width={24}
+              height={24}
+            />
+          </LeftContainer>
+
+          <Link href={ROUTES.HOME.url}>
+            <Image src={"/img/Logo.svg"} alt="main" width={28} height={32} />
+          </Link>
+        </>
+      )}
+      <RightContainer>
         <Link href={ROUTES.LOGIN.url}>
           <LoginButton>로그인</LoginButton>
         </Link>
-      </div>
+      </RightContainer>
     </SHeader>
   );
 };
@@ -78,6 +91,14 @@ const SHeader = styled.nav`
   align-items: center;
   margin: 0 auto;
   justify-content: flex-end;
+  position: relative;
+  ${media.MOBILE} {
+    width: 100vw;
+    height: 56px;
+    padding: 12px 16px;
+    justify-content: center;
+    box-sizing: border-box;
+  }
 `;
 
 const LoginButton = styled.button`
@@ -90,5 +111,21 @@ const LoginButton = styled.button`
   font-size: 14px;
   line-height: 100%;
   color: #2aa0e1;
+  ${media.MOBILE} {
+    height: 32px;
+    width: 64px;
+    font-size: 12px;
+  }
 `;
+
+const LeftContainer = styled.div`
+  position: absolute;
+  left: 16px;
+`;
+
+const RightContainer = styled.div`
+  position: absolute;
+  right: 16px;
+`;
+
 export default Header;

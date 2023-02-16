@@ -41,7 +41,7 @@ const Login = () => {
     try {
       const result = await mutateAsync({ ...data, isSocial: "일반" });
       Cookies.set("accessToken", result?.data?.jwt);
-      console.log("result", result);
+      router.push(ROUTES.HOME.url);
     } catch (error) {
       console.log("error", error);
       setLoginResultMessage((error as Error).message);

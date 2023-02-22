@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Section from "./common/atoms/Section";
+import Section from "../atoms/Section";
 const Footer = () => {
   return (
     <FooterWrapper>

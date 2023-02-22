@@ -1,3 +1,4 @@
+import UserInfo from "components/login/UserInfo";
 import media from "constants/media";
 import useAuth from "hooks/useAuth";
 import useMediaQuery from "hooks/useMediaQuery";
@@ -6,7 +7,6 @@ import Link from "next/link";
 import { useState } from "react";
 import ROUTES from "routes/routes";
 import styled from "styled-components";
-import UserInfo from "./login/UserInfo";
 const MobileGNB = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   return (

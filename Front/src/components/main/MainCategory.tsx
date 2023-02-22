@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import media from "../constants/media";
+import media from "../../constants/media";
 
 const SMainIcon = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   width: 100%;
   .item {
     width: 70px;
@@ -21,6 +21,7 @@ const SMainIcon = styled.div`
       bottom: -35px;
       left: 51%;
       transform: translateX(-50%);
+      font-size: 12px;
     }
     &.color-test {
       background-color: #a17feb;
@@ -42,7 +43,7 @@ const SMainIcon = styled.div`
       background-size: 60%;
       span {
         bottom: -25px;
-        font-size: 14px;
+        font-size: 11px;
       }
     }
   }

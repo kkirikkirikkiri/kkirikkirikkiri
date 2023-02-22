@@ -1,5 +1,5 @@
-import Footer from "components/Footer";
-import Header from "components/Header";
+import Footer from "components/common/templates/Footer";
+import Header from "components/common/templates/Header";
 import media from "constants/media";
 import { FC, ReactNode } from "react";
 import styled from "styled-components";

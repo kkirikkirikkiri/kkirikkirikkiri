@@ -46,9 +46,6 @@ const Login = () => {
       console.log("error", error);
       setLoginResultMessage((error as Error).message);
     }
-    //setcookie
-
-    // router.push("/");
   }, []);
 
   useEffect(() => {

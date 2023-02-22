@@ -1,8 +1,12 @@
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import AuthEmail from "components/join-step/AuthEmail";
 import DetailProfileInput from "components/join-step/DetailProfileInput";
+import MobileNavigation from "components/join-step/MobileNavigation";
 import Navigation from "components/join-step/Navigation";
 import UserInfoInput from "components/join-step/UserInfoInput";
+import { AUTH_TITLE_LIST } from "constants/authStepList";
+import media from "constants/media";
+import useMediaQuery from "hooks/useMediaQuery";
 import AuthLayout from "layouts/AuthLayout";
 import { ReactElement, useCallback, useState } from "react";
 import styled from "styled-components";
@@ -12,17 +16,12 @@ const JoinStep = () => {
   const handleNextStep = useCallback(() => {
     setStep((prev) => prev + 1);
   }, []);
-  console.log("step", step);
-  const titleList = [
-    "이메일 인증하기",
-    "회원정보 입력하기 (필수)",
-    "나만의 프로필 만들기 (선택)",
-  ];
+  const isMobile = useMediaQuery(media.mobileMaxWidth);
   return (
     <>
-      <Navigation step={step} />
+      {isMobile ? <MobileNavigation step={step} /> : <Navigation step={step} />}
       <Container>
-        <TitleFont>{titleList[step]}</TitleFont>
+        <TitleFont>{AUTH_TITLE_LIST[step]}</TitleFont>
         <HorizontalBlank height={16} />
         {step === 0 && <AuthEmail onNext={handleNextStep} />}
         {step === 1 && <UserInfoInput onNext={handleNextStep} />}
@@ -32,7 +31,8 @@ const JoinStep = () => {
   );
 };
 JoinStep.getLayout = function getLayout(page: ReactElement) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const isMobile = useMediaQuery(media.mobileMaxWidth);
+  return <AuthLayout logoVisible={!isMobile}>{page}</AuthLayout>;
 };
 
 const Container = styled.div`

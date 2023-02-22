@@ -1,3 +1,4 @@
+import { axiosInstance } from "apis/common";
 import { NextPage } from "next";
 import type { AppProps } from "next/app";
 import { ReactNode, useState } from "react";
@@ -23,7 +24,12 @@ function MyApp({ Component, pageProps }: MyAppProps) {
             retry: 2,
             retryDelay: 1000,
             refetchOnWindowFocus: false,
+            queryFn: async ({ queryKey }) => {
+              const [url, params] = queryKey as [string, any];
+              return axiosInstance.get(url as string, params as any);
+            },
           },
+
           mutations: {
             retry: 1,
             retryDelay: 0,

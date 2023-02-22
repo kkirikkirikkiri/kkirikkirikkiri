@@ -4,6 +4,7 @@ import CheckBox from "components/common/atoms/CheckBox";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import HorizontalLine from "components/common/atoms/HorizontalLine";
 import Section from "components/common/atoms/Section";
+import media from "constants/media";
 import AuthLayout from "layouts/AuthLayout";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -141,6 +142,9 @@ Join.getLayout = function getLayout(page: ReactElement) {
 
 const Container = styled.div`
   width: 292px;
+  ${media.MOBILE} {
+    width: 100%;
+  }
 `;
 
 const AccordionContent = styled.div`

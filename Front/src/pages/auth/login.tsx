@@ -77,6 +77,7 @@ const Login = () => {
           color={"#424242"}
           background={"#fff"}
           border={"1px solid #DBDBDB"}
+          type="button"
           onClick={() => router.push(ROUTES.JOIN.url)}
         >
           회원가입

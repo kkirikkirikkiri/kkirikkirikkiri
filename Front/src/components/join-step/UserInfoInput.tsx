@@ -42,8 +42,13 @@ const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
   });
 
   const onSubmit = useCallback(async (data: JoinRequest) => {
-    const result = await mutateAsync({ ...data, isSocial: "일반" });
-    onNext();
+    try {
+      const result = await mutateAsync({ ...data, isSocial: "일반" });
+      onNext();
+    } catch (e) {
+      const error = e as Error;
+      console.error(error.cause);
+    }
   }, []);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

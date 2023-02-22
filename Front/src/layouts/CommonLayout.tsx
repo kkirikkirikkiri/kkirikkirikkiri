@@ -41,6 +41,7 @@ const Contents = styled.div`
   background-size: 90%;
   ${media.MOBILE} {
     background-image: unset;
+    padding: 0 20px;
   }
 `;
 

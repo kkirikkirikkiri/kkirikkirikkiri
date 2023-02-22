@@ -47,7 +47,6 @@ const Container = styled.div`
   grid-template-columns: 100%;
 `;
 const Button = styled.label`
-  height: 25px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   position: absolute;
@@ -61,6 +60,9 @@ const Button = styled.label`
   align-items: center;
   justify-content: center;
   padding: 6px 15px;
+  ${media.MOBILE} {
+    padding: 6px 8px 6px 15px;
+  }
 `;
 
 const BannerImage = styled.img`

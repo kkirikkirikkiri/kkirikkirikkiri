@@ -18,7 +18,11 @@ const PasswordInput = (
       addonNext={
         <PasswordIconConatiner>
           <Image
-            src="/img/icon/passwordIcon.svg"
+            src={
+              passwordVisible
+                ? "/img/icon/passwordVisibleIcon.svg"
+                : "/img/icon/passwordIcon.svg"
+            }
             onClick={() => isPasswordVisible((prev) => !prev)}
             width={22}
             height={22}

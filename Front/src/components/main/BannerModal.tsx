@@ -1,17 +1,27 @@
 import CommonModal from "components/common/atoms/CommonModal";
 import IMAGE_LIST from "constants/bannerList";
-import { FC, useState } from "react";
+import media from "constants/media";
+import useMediaQuery from "hooks/useMediaQuery";
+import { FC, useMemo, useState } from "react";
 import styled from "styled-components";
 interface IBannerModalProps {
   currentIndex: number;
 }
 const BannerModal: FC<IBannerModalProps> = ({ currentIndex }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const isMobile = useMediaQuery(media.mobileMaxWidth);
+  const label = useMemo(
+    () => `${currentIndex + 1} / ${IMAGE_LIST.length}${isMobile ? " +" : ""}`,
+    [isMobile, IMAGE_LIST]
+  );
   return (
     <>
-      <Button onClick={() => setIsModalOpen(true)} className="ticket">{`${
-        currentIndex + 1
-      } / ${IMAGE_LIST.length} +`}</Button>
+      <Button
+        onClick={() => isMobile && setIsModalOpen(true)}
+        className="ticket"
+      >
+        {label}
+      </Button>
       <CommonModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -36,7 +46,7 @@ const Container = styled.div`
   grid-gap: 20px;
   grid-template-columns: 100%;
 `;
-const Button = styled.button`
+const Button = styled.label`
   height: 25px;
   background: rgba(0, 0, 0, 0.5);
   border-radius: 10px;

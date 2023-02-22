@@ -21,6 +21,8 @@ const Section: FC<ISectionProps> = ({
   margin,
   padding,
   width,
+  justify,
+  align,
   className,
 }) => {
   return (
@@ -30,7 +32,16 @@ const Section: FC<ISectionProps> = ({
       direction={direction}
       margin={margin}
       padding={padding}
-      style={{ gap, flex, flexDirection: direction, margin, padding, width }}
+      style={{
+        gap,
+        flex,
+        flexDirection: direction,
+        margin,
+        padding,
+        width,
+        justifyContent: justify,
+        alignItems: align,
+      }}
       className={className}
     >
       {children}

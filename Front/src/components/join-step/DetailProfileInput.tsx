@@ -1,3 +1,4 @@
+import { JoinResponse } from "apis/auth";
 import Button from "components/common/atoms/Button";
 import CommonSelect from "components/common/atoms/CommonSelect";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
@@ -8,6 +9,7 @@ import styled from "styled-components";
 import ColorSelect from "./ColorSelect";
 interface DetailProfileInputProps {
   onNext: () => void;
+  tempAuthInfo?: JoinResponse;
 }
 
 const CameraIcon = () => {
@@ -37,7 +39,10 @@ const CameraIcon = () => {
     </svg>
   );
 };
-const DetailProfileInput: FC<DetailProfileInputProps> = ({ onNext }) => {
+const DetailProfileInput: FC<DetailProfileInputProps> = ({
+  onNext,
+  tempAuthData,
+}) => {
   const handleClick = useCallback(() => {
     onNext();
   }, []);
@@ -84,7 +89,7 @@ const DetailProfileInput: FC<DetailProfileInputProps> = ({ onNext }) => {
   ];
 
   const bloodTypeList = ["A", "B", "O", "AB"];
-
+  console.log("tempAuthData", tempAuthData);
   return (
     <>
       <HorizontalLine color="#EAEAEA" marginHorizontal={24} />

@@ -1,5 +1,14 @@
+import { AxiosResponse } from "axios";
 import { useQuery } from "react-query";
-
-export const useUser = (userId: string) => {
-  return useQuery(`/board/findBoardList`);
+interface UserInfoResponse {
+  email: string;
+  id: number;
+  isBloodTypes: string;
+  isColorTypes: string;
+  isMbti: string;
+  isSocial: string;
+  nickName: string;
+}
+export const useUserInfo = () => {
+  return useQuery<AxiosResponse<UserInfoResponse>>(`/users/findOneUserInfo`);
 };

@@ -1,3 +1,4 @@
+import { JoinResponse } from "apis/auth";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import AuthEmail from "components/join-step/AuthEmail";
 import DetailProfileInput from "components/join-step/DetailProfileInput";
@@ -10,13 +11,13 @@ import useMediaQuery from "hooks/useMediaQuery";
 import AuthLayout from "layouts/AuthLayout";
 import { ReactElement, useCallback, useState } from "react";
 import styled from "styled-components";
-
 const JoinStep = () => {
   const [step, setStep] = useState(0);
   const handleNextStep = useCallback(() => {
     setStep((prev) => prev + 1);
   }, []);
   const isMobile = useMediaQuery(media.mobileMaxWidth);
+  const [tempAuthInfo, setTempAuthInfo] = useState<JoinResponse>();
   return (
     <>
       {isMobile ? <MobileNavigation step={step} /> : <Navigation step={step} />}
@@ -24,8 +25,18 @@ const JoinStep = () => {
         <TitleFont>{AUTH_TITLE_LIST[step]}</TitleFont>
         <HorizontalBlank height={16} />
         {step === 0 && <AuthEmail onNext={handleNextStep} />}
-        {step === 1 && <UserInfoInput onNext={handleNextStep} />}
-        {step === 2 && <DetailProfileInput onNext={handleNextStep} />}
+        {step === 1 && (
+          <UserInfoInput
+            onNext={handleNextStep}
+            onJoinDone={(data) => setTempAuthInfo(data)}
+          />
+        )}
+        {step === 2 && (
+          <DetailProfileInput
+            onNext={handleNextStep}
+            tempAuthInfo={tempAuthInfo}
+          />
+        )}
       </Container>
     </>
   );

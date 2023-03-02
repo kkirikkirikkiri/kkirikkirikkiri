@@ -1,5 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { JoinRequest, useJoinMutate } from "apis/auth";
+import { JoinRequest, JoinResponse, useJoinMutate } from "apis/auth";
 import Button from "components/common/atoms/Button";
 import HorizontalBlank from "components/common/atoms/HorizontalBlank";
 import Input from "components/common/atoms/Input";
@@ -10,9 +10,10 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 interface UserInfoInputProps {
   onNext: () => void;
+  onJoinDone: (data: JoinResponse) => void;
 }
 
-const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
+const UserInfoInput: FC<UserInfoInputProps> = ({ onNext, onJoinDone }) => {
   const { mutateAsync } = useJoinMutate();
   const schema = yup.object().shape({
     password: yup.string().required("비밀번호를 입력해주세요."),
@@ -44,6 +45,7 @@ const UserInfoInput: FC<UserInfoInputProps> = ({ onNext }) => {
   const onSubmit = useCallback(async (data: JoinRequest) => {
     try {
       const result = await mutateAsync({ ...data, isSocial: "일반" });
+      result.data && onJoinDone(result.data);
       onNext();
     } catch (e) {
       const error = e as Error;

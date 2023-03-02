@@ -1,5 +1,5 @@
 import { useMutation } from "react-query";
-import { axiosInstance } from "./common";
+import { authInstance } from "./common";
 
 export interface JoinRequest {
   email: string;
@@ -9,10 +9,25 @@ export interface JoinRequest {
   passwordConfirm: string;
 }
 
+export interface JoinResponse {
+  jwt: string;
+  user: {
+    email: string;
+    nickName: string;
+    isSocial: string;
+    deletedAt: string;
+    isBloodTypes: string;
+    isMbti: string;
+    isColorTypes: string;
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
 type SocialType = "일반" | "네이버" | "카카오";
 export const useJoinMutate = () => {
   return useMutation((params: JoinRequest) => {
-    return axiosInstance.post(`/auth/register`, params);
+    return authInstance.post<JoinResponse>(`/auth/register`, params);
   });
 };
 
@@ -34,6 +49,6 @@ interface SignInResponse {
 export type SignInRequest = Omit<JoinRequest, "nickName" | "passwordConfirm">;
 export const useSignInMutate = () => {
   return useMutation((params: SignInRequest) => {
-    return axiosInstance.post<SignInResponse>(`/auth/login`, params);
+    return authInstance.post<SignInResponse>(`/auth/login`, params);
   });
 };

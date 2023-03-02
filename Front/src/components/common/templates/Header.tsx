@@ -58,36 +58,57 @@ const Header = () => {
   const { isAuthed } = useAuth();
   console.log("isAuthed", isAuthed);
   return (
-    <SHeader>
-      {/* <MobileGNB /> */}
-      {isMobile && (
-        <>
-          <LeftContainer>
-            <Image
-              src={"/img/icon/hamberger.svg"}
-              alt="main"
-              width={24}
-              height={24}
-            />
-          </LeftContainer>
+    <Container>
+      <SHeader>
+        {/* <MobileGNB /> */}
+        {isMobile && (
+          <>
+            <LeftContainer>
+              <Image
+                src={"/img/icon/hamberger.svg"}
+                alt="main"
+                width={24}
+                height={24}
+              />
+            </LeftContainer>
 
-          <Link href={ROUTES.HOME.url}>
-            <Image src={"/img/Logo.svg"} alt="main" width={28} height={32} />
-          </Link>
-        </>
-      )}
-      <RightContainer>
-        {isAuthed ? (
-          <UserInfo />
-        ) : (
-          <Link href={ROUTES.LOGIN.url}>
-            <LoginButton>로그인</LoginButton>
-          </Link>
+            <Link href={ROUTES.HOME.url}>
+              <Image src={"/img/Logo.svg"} alt="main" width={28} height={32} />
+            </Link>
+          </>
         )}
-      </RightContainer>
-    </SHeader>
+        <RightContainer>
+          {isAuthed ? (
+            <UserInfo />
+          ) : (
+            <Link href={ROUTES.LOGIN.url}>
+              <LoginButton>로그인</LoginButton>
+            </Link>
+          )}
+        </RightContainer>
+      </SHeader>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  ${media.MOBILE} {
+    ::after {
+      content: " ";
+      display: block;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(
+        90deg,
+        #9b51e0 0%,
+        #2f80ed 29.17%,
+        #6fcf97 72.4%,
+        #f2c94c 100%
+      );
+    }
+  }
+`;
 const SHeader = styled.nav`
   max-width: 1100px;
   width: 70vw;

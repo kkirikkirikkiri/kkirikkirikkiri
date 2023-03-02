@@ -27,11 +27,6 @@ const Section: FC<ISectionProps> = ({
 }) => {
   return (
     <Container
-      flex={flex}
-      gap={gap}
-      direction={direction}
-      margin={margin}
-      padding={padding}
       style={{
         gap,
         flex,
